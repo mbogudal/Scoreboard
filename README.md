@@ -15,6 +15,7 @@
 - **One additional operation of my choice is resumeMatchWithScores().
 This method will simplify tests, it can be used by business in case of random emergency situations**
   - I'v decided to append resumeWithScores with  start time instead of delaying test mock
+  - Introduction commit SHA 241c38b6819647a728ca30e5c8d9a2800e217687
 - **Added data validation**
   - data should not be null
   - teams should not be null nor empty
