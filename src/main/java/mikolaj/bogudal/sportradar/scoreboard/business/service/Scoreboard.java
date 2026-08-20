@@ -34,6 +34,14 @@ public interface Scoreboard {
             throw new IllegalArgumentException("match should not be null");
         }
 
+        if(newHomeScore<0){
+            throw new IllegalArgumentException("newHomeScore should not be negative");
+        }
+
+        if(newAwayScore<0){
+            throw new IllegalArgumentException("newAwayScore should not be negative");
+        }
+
         getCurrentMatches().remove(match);
         match = match.withScore(newHomeScore, newAwayScore);
         getCurrentMatches().add(match);
