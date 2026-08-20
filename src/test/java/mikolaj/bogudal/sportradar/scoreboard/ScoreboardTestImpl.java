@@ -1,4 +1,4 @@
-package mikolaj.bogudal.sportradar.Library;
+package mikolaj.bogudal.sportradar.scoreboard;
 
 import mikolaj.bogudal.sportradar.scoreboard.business.domain.Match;
 import mikolaj.bogudal.sportradar.scoreboard.business.service.Scoreboard;

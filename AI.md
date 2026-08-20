@@ -25,7 +25,7 @@ nie powinnio zawierać local date time zamiast instant? "Match – zawiera obiek
 jak nazwać drużynę gospodarzy w modelu match 
 
 ## prompt 8
-co myślisz o tych modelach? "package mikolaj.bogudal.sportradar.Library.business.domain;
+co myślisz o tych modelach? "package mikolaj.bogudal.sportradar.scoreboard.business.domain;
 
 import java.time.Instant;
 
@@ -36,7 +36,7 @@ Team awayTeam,
 Instant startTime,
 Instant endTime,
 Score score) {
-}" "package mikolaj.bogudal.sportradar.Library.business.domain;
+}" "package mikolaj.bogudal.sportradar.scoreboard.business.domain;
 
 import java.time.Instant;
 import java.util.List;
@@ -46,7 +46,7 @@ Long id,
 String name,
 List<Match> matches
 ) {
-}" "package mikolaj.bogudal.sportradar.Library.business.domain;
+}" "package mikolaj.bogudal.sportradar.scoreboard.business.domain;
 
 public record Score(Long id,
 Match match,

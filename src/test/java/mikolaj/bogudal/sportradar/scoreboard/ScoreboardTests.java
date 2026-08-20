@@ -1,4 +1,4 @@
-package mikolaj.bogudal.sportradar.Library;
+package mikolaj.bogudal.sportradar.scoreboard;
 
 import mikolaj.bogudal.sportradar.scoreboard.business.domain.Match;
 import org.junit.jupiter.api.Assertions;
@@ -70,6 +70,7 @@ public class ScoreboardTests {
     public void finishAMatch() {
         scoreboardTest.startANewMatch("France", "Poland");
         scoreboardTest.finishMatch(scoreboardTest.getCurrentMatches().get(0));
+        Assertions.assertEquals(0, scoreboardTest.getCurrentMatches().size());
     }
 
     @Test
