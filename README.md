@@ -19,3 +19,4 @@ One additional operation of my choice is resumeMatchWithScores().
 Added data validation
  - data should not be null
  - teams should not be null nor empty
+ - i think that negatvie scores aren't possible, blocking them
