@@ -46,4 +46,30 @@ public class ScoreboardTests {
         Assertions.assertEquals(5, match.score().awayTeamScores());
     }
 
+    @Test
+    public void getSummaryOfMatchesInProgress(){
+        scoreboardTest.resumeMatchWithScoresAndStartTime("Mexico", "Canada", 0, 5,Instant.now().plusMillis(10));
+        scoreboardTest.resumeMatchWithScoresAndStartTime("Spain", "Brazil", 10, 2, Instant.now().plusMillis(20));
+        scoreboardTest.resumeMatchWithScoresAndStartTime("Germany", "France", 2, 2, Instant.now().plusMillis(30));
+        scoreboardTest.resumeMatchWithScoresAndStartTime("Uruguay", "Italy", 6, 6, Instant.now().plusMillis(40));
+        scoreboardTest.resumeMatchWithScoresAndStartTime("Argentina", "Australia", 3, 1, Instant.now().plusMillis(50));
+
+        Assertions.assertEquals(
+                scoreboardTest.getCurrentMatches().get(3),
+                scoreboardTest.getSummaryOfMatchesInProgress().get(0));
+        Assertions.assertEquals(
+                scoreboardTest.getCurrentMatches().get(1),
+                scoreboardTest.getSummaryOfMatchesInProgress().get(1));
+        Assertions.assertEquals(
+                scoreboardTest.getCurrentMatches().get(0),
+                scoreboardTest.getSummaryOfMatchesInProgress().get(2));
+        Assertions.assertEquals(
+                scoreboardTest.getCurrentMatches().get(4),
+                scoreboardTest.getSummaryOfMatchesInProgress().get(3));
+        Assertions.assertEquals(
+                scoreboardTest.getCurrentMatches().get(2),
+                scoreboardTest.getSummaryOfMatchesInProgress().get(4));
+
+    }
+
 }
