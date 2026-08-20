@@ -42,4 +42,12 @@ public interface Scoreboard {
         }).collect(Collectors.toList());
     }
 
+    default Match resumeMatchWithScoresAndStartTime(String homeTeam, String awayTeam, int homeScore, int awayScore, Instant startTime) {
+        Match match = updateScore(startANewMatch(homeTeam, awayTeam), homeScore, awayScore);
+        getCurrentMatches().remove(match);
+        match = match.withStartTime(startTime);
+        getCurrentMatches().add(match);
+        return match;
+    }
+
 }

@@ -38,5 +38,12 @@ public class ScoreboardTests {
         scoreboardTest.finishMatch(scoreboardTest.getCurrentMatches().get(0));
     }
 
+    @Test
+    public void resumeMatchWithScoresAndStartTime(){
+        scoreboardTest.resumeMatchWithScoresAndStartTime("Mexico", "Canada", 0, 5, Instant.now());
+        Match match = scoreboardTest.getCurrentMatches().get(0);
+        Assertions.assertEquals(0, match.score().homeTeamScores());
+        Assertions.assertEquals(5, match.score().awayTeamScores());
+    }
 
 }
