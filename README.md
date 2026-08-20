@@ -20,7 +20,11 @@ This method will simplify tests, it can be used by business in case of random em
   - data should not be null
   - teams should not be null nor empty
   - i think that negative scores aren't possible, blocking them
+  - should be validation if given team is already playing?
+   - i think so.
 ## Trade offs made
 - **Rejecting H2 database for making lightweight library**
 - **Rejecting spring boot for making lightweight library**
+-  ** spliting validation of duplicated teams into two streams 
+for clearer error messages. **
 

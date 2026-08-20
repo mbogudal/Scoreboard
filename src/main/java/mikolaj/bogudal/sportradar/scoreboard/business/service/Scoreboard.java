@@ -13,13 +13,33 @@ public interface Scoreboard {
     List<Match> getCurrentMatches();
 
     default Match startANewMatch(String homeTeam, String awayTeam) {
-        if(homeTeam == null || homeTeam.isEmpty()){
+        if (homeTeam == null || homeTeam.isEmpty()) {
             throw new IllegalArgumentException("homeTeam should not be null nor empty");
         }
 
-        if(awayTeam == null || awayTeam.isEmpty()){
+        if (awayTeam == null || awayTeam.isEmpty()) {
             throw new IllegalArgumentException("awayTeam should not be null nor empty");
         }
+
+        if(getCurrentMatches()
+                .stream()
+                .anyMatch(i ->
+                        i.homeTeam().name().equals(homeTeam)
+                                || i.awayTeam().name().equals(homeTeam)
+
+                )){
+            throw new IllegalArgumentException(homeTeam+" already playing");
+        }
+
+        if(getCurrentMatches()
+                .stream()
+                .anyMatch(i ->
+                                 i.homeTeam().name().equals(awayTeam)
+                                || i.awayTeam().name().equals(awayTeam)
+                )){
+            throw new IllegalArgumentException(awayTeam+" already playing");
+        }
+
         Match match = new Match(
                 new Team(homeTeam),
                 new Team(awayTeam),
@@ -30,15 +50,15 @@ public interface Scoreboard {
     }
 
     default Match updateScore(Match match, int newHomeScore, int newAwayScore) {
-        if(match == null){
+        if (match == null) {
             throw new IllegalArgumentException("match should not be null");
         }
 
-        if(newHomeScore<0){
+        if (newHomeScore < 0) {
             throw new IllegalArgumentException("newHomeScore should not be negative");
         }
 
-        if(newAwayScore<0){
+        if (newAwayScore < 0) {
             throw new IllegalArgumentException("newAwayScore should not be negative");
         }
 
@@ -49,7 +69,7 @@ public interface Scoreboard {
     }
 
     default void finishMatch(Match match) {
-        if(match == null){
+        if (match == null) {
             throw new IllegalArgumentException("match should not be null");
         }
         getCurrentMatches().remove(match);
@@ -66,7 +86,7 @@ public interface Scoreboard {
     }
 
     default Match resumeMatchWithScoresAndStartTime(String homeTeam, String awayTeam, int homeScore, int awayScore, Instant startTime) {
-        if(startTime == null){
+        if (startTime == null) {
             throw new IllegalArgumentException("startTime should not be null");
         }
         Match match = updateScore(startANewMatch(homeTeam, awayTeam), homeScore, awayScore);
