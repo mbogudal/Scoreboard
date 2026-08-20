@@ -26,6 +26,20 @@ public class ScoreboardTests {
     }
 
     @Test
+    public void startANewMatchDuplicatedHomeTeam() {
+        Assertions.assertEquals(0, scoreboardTest.getCurrentMatches().size());
+        scoreboardTest.startANewMatch("France", "Poland");
+        Assertions.assertThrows(IllegalArgumentException.class, ()->scoreboardTest.startANewMatch("France", "Germany"));
+    }
+
+    @Test
+    public void startANewMatchDuplicatedAwayTeam() {
+        Assertions.assertEquals(0, scoreboardTest.getCurrentMatches().size());
+        scoreboardTest.startANewMatch("France", "Poland");
+        Assertions.assertThrows(IllegalArgumentException.class, ()->scoreboardTest.startANewMatch("Germany", "Poland"));
+    }
+
+    @Test
     public void startANewMatchEmptyHomeName() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> scoreboardTest.startANewMatch("", "Poland"));
     }
