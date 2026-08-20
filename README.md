@@ -16,3 +16,6 @@ Scoreboard created as interface with default operations for future use as Servic
 One additional operation of my choice is resumeMatchWithScores(). 
    This method will simplify tests, it can be used by business in case of random emergency situations
  - I'v decided to append resumeWithScores with  start time instead of delaying test mock
+Added data validation
+ - data should not be null
+ - teams should not be null nor empty

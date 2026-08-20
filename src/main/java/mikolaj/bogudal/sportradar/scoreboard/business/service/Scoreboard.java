@@ -13,6 +13,13 @@ public interface Scoreboard {
     List<Match> getCurrentMatches();
 
     default Match startANewMatch(String homeTeam, String awayTeam) {
+        if(homeTeam == null || homeTeam.isEmpty()){
+            throw new IllegalArgumentException("homeTeam should not be null nor empty");
+        }
+
+        if(awayTeam == null || awayTeam.isEmpty()){
+            throw new IllegalArgumentException("awayTeam should not be null nor empty");
+        }
         Match match = new Match(
                 new Team(homeTeam),
                 new Team(awayTeam),
@@ -23,6 +30,10 @@ public interface Scoreboard {
     }
 
     default Match updateScore(Match match, int newHomeScore, int newAwayScore) {
+        if(match == null){
+            throw new IllegalArgumentException("match should not be null");
+        }
+
         getCurrentMatches().remove(match);
         match = match.withScore(newHomeScore, newAwayScore);
         getCurrentMatches().add(match);
@@ -30,10 +41,14 @@ public interface Scoreboard {
     }
 
     default void finishMatch(Match match) {
+        if(match == null){
+            throw new IllegalArgumentException("match should not be null");
+        }
         getCurrentMatches().remove(match);
     }
 
     default List<Match> getSummaryOfMatchesInProgress() {
+
         return getCurrentMatches().stream().sorted(new Comparator<Match>() {
             @Override
             public int compare(Match o1, Match o2) {
@@ -43,6 +58,9 @@ public interface Scoreboard {
     }
 
     default Match resumeMatchWithScoresAndStartTime(String homeTeam, String awayTeam, int homeScore, int awayScore, Instant startTime) {
+        if(startTime == null){
+            throw new IllegalArgumentException("startTime should not be null");
+        }
         Match match = updateScore(startANewMatch(homeTeam, awayTeam), homeScore, awayScore);
         getCurrentMatches().remove(match);
         match = match.withStartTime(startTime);
